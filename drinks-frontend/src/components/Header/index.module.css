@@ -1,0 +1,47 @@
+
+.header {
+    color: #fff;
+    text-align: center;
+    min-height: 40vh;
+    min-width: 100vw;
+    background-image: url('../../assets/images/banner5.jpg');
+    background-repeat: no-repeat;
+    background-size: 100vw;
+    /* background-position: right; */
+    background-position-y: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+.header a{
+  text-decoration: none;
+  color: #fff;
+}
+.header h1 {
+  font-size: 60px;
+    font-family:'Island Moments';
+    background-color: rgba(0, 0, 0, 0.7); 
+}
+.header h5 {
+  font-family:'Island Moments';
+  font-size: 50px;
+
+}
+.menuHeader{
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.5);
+  
+  }
+.itemNav{
+    font-family: 'Island Moments';
+    list-style: none;
+    font-size: 2rem;
+    margin-right: 55px;
+  }
+.navbarContent {
+    font-family: 'Island Moments';
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 100vh;
+    color: #fff;
+  }

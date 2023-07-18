@@ -1,0 +1,17 @@
+.box{
+    padding: 50px;
+    background-image:url('/src/assets/images/banner-alcohol.jpg');
+    margin-bottom: 15px;
+}
+.containerBody{
+border: solid 2px black;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 15px;
+    background-color: #fff;
+    justify-content: center;
+
+
+
+}
+

@@ -1,0 +1,11 @@
+.offCanvas{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}
+.offCanvas img{
+    border-radius: 3rem;
+}
+.offCanvasBody{
+display: flex;
+
+}

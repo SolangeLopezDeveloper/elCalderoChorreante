@@ -1,0 +1,28 @@
+.footer {
+    background-color: #000;
+    color: #fff;
+    min-height: 20vh;
+    min-width: 100vw;
+    font-family: 'Island Moments';
+
+
+
+}
+.box{
+    padding: 2rem;
+    display: inline-flex;
+    gap: 155px;
+    width: 100%;
+    justify-content: space-evenly;
+    
+    
+}
+.footer h6 {
+    text-align: center;
+    width: 100%;
+    font-size: 24px;
+}
+
+.footer p {
+    font-size: 24px;
+}
