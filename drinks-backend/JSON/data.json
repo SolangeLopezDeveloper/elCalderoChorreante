@@ -1,0 +1,38 @@
+[
+    {
+        "name": "Picada de salame y queso",
+        "price": "8000",
+        "urlImage": "https://donseijo.com.ar/producto/picada-clasica/"
+    },
+    {
+    
+        "name": "Combo Cervecero",
+        "price": "15250",
+        "urlImage": "https://scontent.faep6-1.fna.fbcdn.net/v/t1.6435-9/48429376_2577770665597619_6168097723145781248_n.jpg?_nc_cat=111&cb=99be929b-3346023f&ccb=1-7&_nc_sid=9267fe&_nc_ohc=AB3CgA9UuKEAX9u-RDQ&_nc_ht=scontent.faep6-1.fna&oh=00_AfAS-9qx42ptkunoqknSr46q9Qi5Kp9o022Y_VZjQ50PSg&oe=64DA7FA7"
+    },
+    {
+    
+        "name": "Combo Mundial",
+        "price": "50000",
+        "urlImage": "https://argentina4you.com/es/products/combo-fernet-mundial-camiseta"
+    },
+    {
+    
+        "name": "Combo Fernet",
+        "price": "30000",
+        "urlImage": "https://directoriopatagonico.com/producto/672091-combo-fernet-coca-1-5-lt"
+    },
+    {
+    
+        "name": "Gran Picada",
+        "price": "45000",
+        "urlImage": "https://a-manger.com/"
+    },
+    {
+    
+        "name": "Picada Veggie",
+        "price": "40000",
+        "urlImage": "https://jumboalacarta.com.ar/2018/06/11/picada-saludable/"
+    }
+
+]
