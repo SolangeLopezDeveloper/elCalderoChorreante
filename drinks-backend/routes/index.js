@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { register, login } = require('../controllers/authController');
-const { profile } = require('../controllers/usersController');
+const { profile, toggleFavorite } = require('../controllers/usersController');
 const checkToken = require('../middlewares/checkToken');
 
 
@@ -16,5 +16,5 @@ router
 .post('/api/v1/login', login)
 
 .get('/api/v1/profile',checkToken, profile)
-
+.get('/api/v1/favorite', checkToken, toggleFavorite)
 module.exports = router;

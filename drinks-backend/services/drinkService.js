@@ -1,8 +1,8 @@
-const Drink = require('../models/Drink')
+const Drink = require('../models/Products')
 const createError = require('http-errors');
 const getProduct = async (req,res)=>{
     try {
-     const product= await Drink.find()
+     const product= await Drink.findOne()
         return res.status(201).json({
             ok: true,
            product
