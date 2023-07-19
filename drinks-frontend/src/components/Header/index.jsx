@@ -97,9 +97,10 @@ logout()
                   ) : (
                     <div className='d-flex gap-3'>
                       <Link to={'/login'} className='btn btn-primary '>
-                      <Button variant="primary" className="me-2"> Ingresá 
                       <i className='fas fa-sign-in-alt fa-lg'></i>
-                      </Button>
+                      </Link>
+                      <Link to={'/register'} className='btn btn-primary '>
+                      <i className='fa-solid fa-user-plus'></i>
                       </Link>
                     </div>
                   )}

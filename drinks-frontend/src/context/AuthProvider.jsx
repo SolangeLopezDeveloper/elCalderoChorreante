@@ -12,6 +12,9 @@ const AuthProvider = ({ children }) => {
 
     const [alert, setAlert] = useState(null);
 
+    const [userProfile, setUserProfile] = useState({})
+
+
     const handleAlert = (error) => {
         setAlert(error.message)
         setTimeout(() => {
@@ -32,10 +35,16 @@ const AuthProvider = ({ children }) => {
         }
     }
 
-    const profile = async (token) => {
+    const getProfile = async () => {
         try {
+
+            const token = sessionStorage.getItem('drinkToken')
+
+            if (!token) { return null }
+
             const response = await profileUserService(token)
-            console.log(response);
+            //console.log(response);
+            setUserProfile(response.user)
         } catch (error) {
             handleAlert(error)
         }
@@ -47,10 +56,12 @@ const AuthProvider = ({ children }) => {
 
     const contextValue = {
         user,
+        userProfile,
         login,
         logout,
         alert,
-        profile
+        getProfile,
+
     }
 
 

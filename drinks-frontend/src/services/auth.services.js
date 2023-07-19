@@ -5,11 +5,13 @@ export const registerAuthService = async (info) => {
     try {
 
         const url = `${apiURL}register`;
-        const { data } = await axios.post(url, {
+        const { data } = await axios.post(url,
+            {...info
+            }, {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(info)
+        
         })
         return data
 
@@ -49,6 +51,7 @@ export const profileUserService = async (token) => {
         })
         return data
     } catch (error) {
+        console.log(error);
         throw error.response.data
     }
 }

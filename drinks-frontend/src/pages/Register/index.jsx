@@ -1,95 +1,114 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Calendar } from 'primereact/calendar';
-import { InputText } from "primereact/inputtext";
 import { Password } from 'primereact/password';
-import { useFormik } from 'formik';
-import { Toast } from 'primereact/toast';
-
+import { ErrorMessage, Field, Formik } from 'formik';
+import * as Yup from 'yup';
 import { Button } from 'primereact/button';
+import { registerAuthService } from '../../services/auth.services';
+import { useNavigate } from 'react-router-dom';
+import { Form } from 'react-bootstrap'
+
+
 //import { classNames } from 'primereact/utils';
 
 const Register = () => {
+  const navigate = useNavigate()
 
-  const toast = useRef(null);
-  const show = () => {
-    toast.current.show({ severity: 'success', summary: 'Form Submitted', detail: formik.values.item });
-};
-
-  const formik = useFormik({
-    initialValues: {
-      item: ''
-    },
-    validate: (data) => {
-      let errors = {};
-
-      if (!data.item) {
-        errors.item = 'Value is required.';
-      }
-
-      return errors;
-    },
-    onSubmit: (data) => {
-      data.item && show(data);
-      formik.resetForm();
-    }
-  });
-
-  const isFormFieldInvalid = (name) => !!(formik.touched[name] && formik.errors[name]);
-
-  const getFormErrorMessage = (name) => {
-    return isFormFieldInvalid(name) ? <small className="p-error">{formik.errors[name]}</small> : <small className="p-error">&nbsp;</small>;
-  };
+ 
   const [date, setDate] = useState(null);
-  const [valueFirstName, setValueFirstName] = useState('');
+  //const [valueFirstName, setValueFirstName] = useState('');
   const [valuePass, setValuePass] = useState('');
   const [valuePassSec, setValuePassSec] = useState('');
-  const [value, setValue] = useState('');
+ // const [value, setValue] = useState('');
+
+  const initialValues = {
+    firstname: '',
+    lastname: '',
+    valuePass: '',
+    valuePassSec: ''
+  }
+
+
+  const validationsSchema = Yup.object({
+    firstname: Yup.string().required('Debes colocar un nombre'),
+    lastname: Yup.string().required('Debes colocar un apellido'),
+    valuePass: Yup.string().required('Debes ingresar una contraseña'),
+    valuePassSec: Yup.string().required('Debes repetir tu contraseña')
+  })
+
+  const handleSubmit = async (values) => {
+    const response = await registerAuthService(values)
+    console.log(response)
+    navigate('/profile')
+
+  }
 
 
   return (
-    <div className="w-100" style={{ maxWidth: '400px' }}>
+     <div className="w-100" style={{ maxWidth: '400px' }}>
+     <h2 className="mb-2">Registrate</h2>
+        <Formik
+          initialValues={initialValues}
+          onSubmit={handleSubmit}
+          validationSchema={validationsSchema}>
 
-      <form onSubmit={formik.handleSubmit} className="d-flex flex-column gap-2">
-        <h2 className="mb-2">Registrate</h2>
-        <Toast ref={toast} />
-        <div className="card flex justify-content-center gap-2">
-          Nombre
-          <InputText id="firstname" value={valueFirstName} onChange={(e) => setValueFirstName(e.target.value)} />
-          <label htmlFor="firstname" ></label>
-          Apellido
           
-          <InputText id="lastname" value={value} onChange={(e) => setValue(e.target.value)} />
- 
+          {
+            (formik) => (
+              <Form onSubmit={formik.handleSubmit} >
+                <div className="card flex justify-content-center gap-2">
+                  <Form.Group className="mb-5" >
+                  <Form.Label htmlFor="firstname">Nombre</Form.Label>
+                    <Field id="firstname" as={Form.Control} 
+                    name="firstname"
+                    placeholder= "Ingresa tu nombre"/>
+              
+                    <ErrorMessage
+                      name="firstname"
+                      component={Form.Text}
+                      className="text-danger ms-2"
+                    />
+                  </Form.Group>
+
+                  <Form.Group className="mb-5" >
+                  <Form.Label htmlFor="lastname">Apellido</Form.Label>
+                    <Field id="lastname" as={Form.Control} 
+                    name="lastname"
+                    placeholder= "Ingresa tu nombre"/>
+              
+                    <ErrorMessage
+                      name="lastname"
+                      component={Form.Text}
+                      className="text-danger ms-2"
+                    />
+                  </Form.Group>
+                  Fecha de Nacimiento
+                  <Calendar value={date} id='date' onChange={(e) => setDate(e.value)} showIcon dateFormat="dd/mm/yy" readOnlyInput />
+                  Ingresá una contraseña
+                  <span >
+                    <Password value={valuePass} id='valuePass' onChange={(e) => setValuePass(e.target.value)} toggleMask />
+                  </span>
+                  Repite la contraseña
+                  <span>
+                    <Password value={valuePassSec} id='valuePassSec' onChange={(e) => setValuePassSec(e.target.value)} toggleMask feedback={false} />
+                  </span>
+                </div>
 
 
-
-          Fecha de Nacimiento
-          <Calendar value={date} onChange={(e) => setDate(e.value)} showIcon dateFormat="dd/mm/yy" readOnlyInput/>
-        
+                <Button type="submit" label="Submit" className="mt-2 mb-3" disabled={false}/>
 
 
-          Ingresá una contraseña
-          <span >
-          <Password value={valuePass} onChange={(e) => setValuePass(e.target.value)} toggleMask />
-          </span>
-        
+              </Form>
+            )
+          }
 
+        </Formik>
+       </div> 
+  
+  )
+}
 
-          Repite la contraseña
-          <span>
-          <Password value={valuePassSec} onChange={(e) => setValuePassSec(e.target.value)} toggleMask feedback={false} />
-          </span>
-         
-        </div>
-
-        {getFormErrorMessage('item')}
-        <Button type="submit" label="Submit" className="mt-2 mb-3" />
-      </form>
-
-    </div>
-  );
-};
 Register.propTypes = {
   register: PropTypes.func
 }

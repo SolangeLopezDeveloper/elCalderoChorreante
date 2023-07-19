@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import useUser from "../../hooks/useUser"
 import { Link } from "react-router-dom"
 import styles from './index.module.css'
@@ -7,17 +7,13 @@ import styles from './index.module.css'
 export const Profile = () => {
 
 
-  const { profile } = useUser()
+  const { userProfile, getProfile } = useUser()
 
-  const token = sessionStorage.getItem('drinkToken')
 
-  const [userProfile, setUserProfile] = useState(null)
 
+  
   useEffect(() => {
-    /*    const response = profile(token)
-       setUserProfile(response.user) */
-    setUserProfile(profile(token))
-
+  getProfile()
   }, [])
 
   return (

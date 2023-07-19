@@ -44,7 +44,11 @@ export const Login = () => {
                 {alert && <Alert variant="danger">{alert}</Alert>}
                 <Form.Group className="mb-5" controlId="formEmail">
                   <Form.Label htmlFor="email">Email</Form.Label>
-                  <Field id="email" type="email" placeholder="Ingresa tu email" name="email" as={Form.Control} style={{ width: '350px' }} />
+                  <Field id="email" type="email" 
+                  placeholder="Ingresa tu email" 
+                  name="email" 
+                  as={Form.Control} 
+                  style={{ width: '350px' }} />
                   <ErrorMessage
                     name="email"
                     component={Form.Text}
