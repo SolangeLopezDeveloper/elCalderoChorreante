@@ -1,6 +1,6 @@
-#root {
-
-
+:root {
+  font-family:'Island Moments','Ysabeau Infant';
+ 
 }
 body {
   font-family: var(--font-family);
@@ -16,5 +16,5 @@ body {
 }
 
 .card {
-  padding: 2em;
+  padding: 0.7rem;
 }

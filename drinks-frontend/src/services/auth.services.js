@@ -16,7 +16,7 @@ export const registerAuthService = async (info) => {
         return data
 
     } catch (error) {
-        throw new Error(error.message)
+        throw error.response.data
     }
 }
 export const loginAuthService = async (info) => {
@@ -44,6 +44,25 @@ export const profileUserService = async (token) => {
     try {
 
         const url = `${apiURL}profile`
+        const { data } = await axios.get(url, {
+            headers: {
+                Authorization: token
+            }
+        })
+        return data
+    } catch (error) {
+        console.log(error);
+        throw error.response.data
+    }
+}
+export const toggleFavoriteService = async (idDrink) => {
+    try {
+
+        const token = sessionStorage.getItem('drinkToken')
+
+        if (!token) { return null }
+
+        const url = `${apiURL}favorite?drink=${idDrink}`
         const { data } = await axios.get(url, {
             headers: {
                 Authorization: token

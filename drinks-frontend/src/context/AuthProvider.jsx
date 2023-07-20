@@ -1,8 +1,8 @@
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import Proptypes from 'prop-types'
-import { loginAuthService, profileUserService } from '../services/auth.services';
+import { loginAuthService, profileUserService, toggleFavoriteService } from '../services/auth.services';
 import jwtDecoded from 'jwt-decode'
-
+import { useNavigate } from 'react-router-dom';
 
 const AuthContext = createContext(null)
 
@@ -14,6 +14,35 @@ const AuthProvider = ({ children }) => {
 
     const [userProfile, setUserProfile] = useState({})
 
+    const [favorites, setFavorites] = useState([])
+
+    const navigate = useNavigate()
+
+    useEffect(() => {
+    const token = sessionStorage.getItem('drinkToken')
+    if(token){
+        const decodedToken = jwtDecoded(token)
+        setUser(decodedToken.user)
+        setFavorites(decodedToken.user.favorites)
+
+    }
+    }, [])
+    
+
+    const handleToggleFavorite = (idDrink) => {
+        if (!favorites.includes(idDrink)) {
+            setFavorites([
+                ...favorites,
+                idDrink
+            ])
+
+        } else {
+            setFavorites(favorites.filter(favorite => favorite !== idDrink))
+        }
+
+        toggleFavoriteService(idDrink)
+
+    }
 
     const handleAlert = (error) => {
         setAlert(error.message)
@@ -22,12 +51,16 @@ const AuthProvider = ({ children }) => {
         }, 3000);
     }
 
+
     const login = async (info) => {
         try {
             const { token } = await loginAuthService(info)
             sessionStorage.setItem('drinkToken', token)
             const decodedToken = token ? jwtDecoded(token) : null;
             setUser(decodedToken.user)
+            setFavorites(user.favorites)
+            //console.log(decodedToken);
+            navigate('/profile')
 
         } catch (error) {
             //console.log(error);
@@ -52,6 +85,9 @@ const AuthProvider = ({ children }) => {
 
     const logout = () => {
         setUser(null)
+        setUserProfile({})
+        setFavorites([])
+        sessionStorage.removeItem('drinkToken')
     }
 
     const contextValue = {
@@ -61,6 +97,8 @@ const AuthProvider = ({ children }) => {
         logout,
         alert,
         getProfile,
+        handleToggleFavorite,
+        favorites
 
     }
 

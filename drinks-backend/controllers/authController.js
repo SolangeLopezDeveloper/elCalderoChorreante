@@ -55,7 +55,7 @@ const login = async (req, res) => {
         }
         let user = await User.findOne({
             email
-        })
+        }).populate('favorites')
         if (!user) {
             throw createError(400, "Credenciales inexistentes")
         }
@@ -65,7 +65,8 @@ const login = async (req, res) => {
                 token: generateJWT({
                     user: {
                         id: user._id,
-                        name: user.name
+                        name: user.name,
+                        favorites: user.favorites ? user.favorites.map(favorite => favorite.drink) : []
 
 
                     }

@@ -1,10 +1,11 @@
-import {  /* Container, Row, */  Card, Col, Button, /* Modal */ } from "react-bootstrap";
+import { Card, Col, Button, /* Modal */ } from "react-bootstrap";
 import PropTypes from 'prop-types'
 import useDrinks from "../../hooks/useDrinks";
 import styles from './index.module.css'
 import useCart from '../../hooks/useCart'
 import { types } from '../../types'
 import Swal from "sweetalert2";
+import useUser from "../../hooks/useUser";
 
 
 
@@ -14,6 +15,8 @@ export const DrinkCard = ({ drink }) => {
     /* console.log(drink); */
     const { strDrink, strDrinkThumb, idDrink, price } = drink;
     const { handleDrinkIdClick } = useDrinks()
+
+    const { handleToggleFavorite, /* favorites */ user } = useUser()
 
 
     const { dispatch } = useCart()
@@ -25,18 +28,27 @@ export const DrinkCard = ({ drink }) => {
             title: '¡Tu producto se agregó al carrito!',
             showConfirmButton: false,
             timer: 1500
-          })
+        })
         dispatch({
             type: types.addItemToCart,
             payload: drink
         })
     }
 
+
+    const handleFavorite = () => {
+        user ?
+            handleToggleFavorite(idDrink)
+            :
+            Swal.fire({
+                icon: 'error',
+                title: '¡Debes loguarte!',
+                showConfirmButton: false,
+                timer: 1500
+            })
+    }
     return (
         <>
-            {/*   <Container>
-         <Row xs={1} md={2} lg={3} className="g-4">  */}
-
             <Col md={4} lg={3}>
                 <Card className={styles.strDrink}>
                     <Card.Img variant="top" src={strDrinkThumb}
@@ -45,13 +57,24 @@ export const DrinkCard = ({ drink }) => {
                         <Card.Title>{strDrink}</Card.Title>
                         <Card.Text>
                             {strDrink}
-
-
                         </Card.Text>
                         <h5>{`$ ${price}`}</h5>
+                        <div className="d-flex justify-content-around align-text-center btn btn-lg p-2">
+                            <a href="" onClick={handleFavorite}
+                              /*   {
+                                favorites.includes(idDrink) ?
+                                    <i className="fa-solid fa-star fa-lg"></i>
+                                    :
+                                    <i className="fa-regular fa-star fa-lg"></i>
+                                } */
+                            ></a>
+
+                        </div>
+
                         <div className="d-grid gap-2">
                             <Button
                                 variant={'secondary'}
+
                                 className='w-100 text-uppercase mt-2 mb-3'
                                 onClick={() => {
                                     handleDrinkIdClick(idDrink);
@@ -71,10 +94,7 @@ export const DrinkCard = ({ drink }) => {
                     </Card.Body>
                 </Card>
             </Col >
-
         </>
-        /*     </Row> 
-              </Container>  */
     )
 }
 DrinkCard.propTypes = {

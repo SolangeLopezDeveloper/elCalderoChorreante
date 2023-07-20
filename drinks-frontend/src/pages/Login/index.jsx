@@ -1,7 +1,5 @@
-import { Link } from "react-router-dom";
+import { Link,/*  useNavigate */ } from "react-router-dom";
 import useUser from "../../hooks/useUser";
-
-
 import { Form, Button, Row, Col, Alert } from 'react-bootstrap'
 import * as Yup from 'yup';
 import { ErrorMessage, Field, Formik } from 'formik';
@@ -10,7 +8,7 @@ export const Login = () => {
 
   const { login, alert } = useUser()
 
-
+ // const navigate = useNavigate()
 
   const initialValues = {
     email: "",
@@ -24,7 +22,9 @@ export const Login = () => {
 
   const handleSubmit = (values) => {
     //console.log(values);
-    login(values)
+ login(values)
+
+    //navigate('/home')
   }
   return (
 
@@ -42,7 +42,7 @@ export const Login = () => {
               <Form className="d-flex flex-column mb-5 mt-5 p-3 rounded-4 bg-secondary"
                 onSubmit={formik.handleSubmit}>
                 {alert && <Alert variant="danger">{alert}</Alert>}
-                <Form.Group className="mb-5" controlId="formEmail">
+                <Form.Group className="mb-5">
                   <Form.Label htmlFor="email">Email</Form.Label>
                   <Field id="email" type="email" 
                   placeholder="Ingresa tu email" 
@@ -56,9 +56,14 @@ export const Login = () => {
                   />
                 </Form.Group>
 
-                <Form.Group className="mb-5" controlId="formPassword">
+                <Form.Group className="mb-5">
                   <Form.Label htmlFor="password">Contraseña</Form.Label>
-                  <Field id="password" name="password" type="password" placeholder="Ingresa tu contraseña" as={Form.Control} style={{ width: '350px' }} />
+                  <Field id="password" 
+                  name="password" 
+                  type="password" 
+                  placeholder="Ingresa tu contraseña" 
+                  as={Form.Control} 
+                  style={{ width: '350px' }} />
                   <ErrorMessage
                     name="password"
                     component={Form.Text}

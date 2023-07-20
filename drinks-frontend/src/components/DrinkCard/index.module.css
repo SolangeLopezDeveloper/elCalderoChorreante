@@ -1,11 +1,19 @@
 .strDrink{
-    text-overflow:ellipsis;
-    white-space:nowrap;
+   text-overflow:ellipsis; 
+   white-space: wrap; 
     overflow: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-size: 1rem;
+    
+    
 }
 .strImg {
     width: 150px;
+}
+.strDrink h5{
+    color: green;
+    font-weight: bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }

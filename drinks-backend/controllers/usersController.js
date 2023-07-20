@@ -1,6 +1,7 @@
 const Favorite = require('../models/Favorite');
 const createError = require('http-errors');
 const User = require('../models/Users');
+
 const profile = async (req, res) => {
     return res.status(200).json({
         ok: true,
