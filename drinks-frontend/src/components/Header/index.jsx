@@ -30,7 +30,7 @@ logout()
     <div>
       <header className={`{py-5} ${styles.header}`}>
         <h1>
-          <Link to="/home"><img src={Logo} alt="" className={styles.logo} /></Link>
+          <Link to="/homeSearch"><img src={Logo} alt="" className={styles.logo} /></Link>
         </h1>
       </header>
       <div className=''>

@@ -1,17 +1,50 @@
-import styles from './index.module.css';
-import { Header } from '../components/Header';
-import { Footer } from '../components/Footer';
+import { useNavigate } from 'react-router-dom'
+import ImgBienvenida from '../assets/images/imgBienvenida.jpg'
 import PropTypes from 'prop-types';
-import { Container } from "react-bootstrap";
+import { useState } from 'react';
 
 export const MainLayout = ({ children }) => {
+
+  const navigate = useNavigate()
+
+  const [siClicked, setSiClicked] = useState(false);
+  const handleSiClick = () => {
+    setSiClicked(true)
+    navigate('/homeSearch')
+    const bienvenidaElement = document.getElementById('bienvenida');
+    if (bienvenidaElement) {
+      bienvenidaElement.style.display = 'none';
+    }
+
+  }
+  const handleNoClick = () => {
+    window.location.href = 'https://youtu.be/THNpbRrl0xo'
+  }
+
   return (
-    <div className={styles.main}>
-      <Header />
-      <Container className={styles.container}>
-        {children}
-      </Container>
-      <Footer />
+
+    <div className='text-center'>
+      <div id='bienvenida'>
+      <h1>Bienvenido a El Caldero Chorreante</h1>
+      <div className='d-flex flex-column'>
+        <h3>¿Sos Mayor de 18 años?</h3>
+
+      </div>
+      <div className='d-flex gap-5 mb-4 justify-center'>
+
+        <button className='btn btn-primary' onClick={handleSiClick}>SI</button>
+
+        <button onClick={handleNoClick} className='btn btn-danger'>NO</button>
+       
+      </div>
+      </div>
+  
+      {siClicked ? (
+        children
+      ) : (
+        <img src={ImgBienvenida} alt='' />
+      )}
+
     </div>
   )
 }

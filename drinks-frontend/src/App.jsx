@@ -10,6 +10,7 @@ import { BrowserRouter } from 'react-router-dom';
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import './App.css';
+import { Bienvenida } from './pages/Bienvenida';
 
 function App() {
 
@@ -19,8 +20,10 @@ function App() {
         <CategoriesProvider>
           <DrinksProvider>
             <CartProvider>
-              <MainLayout>
-                <AppRoutes />
+            <MainLayout>
+              <Bienvenida >
+                  <AppRoutes />
+              </Bienvenida  >
               </MainLayout>
             </CartProvider>
           </DrinksProvider>

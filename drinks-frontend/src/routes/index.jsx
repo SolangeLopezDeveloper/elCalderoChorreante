@@ -19,8 +19,8 @@ export const AppRoutes = () => {
 
     <Routes>
 
-      <Route exact path="/" element={<Bienvenida />} />
-      <Route path='/home' element={<Home />} />
+  <Route exact path="/" element={<Bienvenida />} /> 
+   <Route path='/homeSearch' element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/user" element={<ProtectedRoutes />}>
