@@ -1,7 +1,10 @@
 .box{
-    padding: 50px;
-    background-image:url('/src/assets/images/banner-alcohol.jpg');
+    padding: 150px;
+    background-image:url('/src/assets/images/caldero.jpg');
     margin-bottom: 15px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 .containerBody{
 border: solid 2px black;

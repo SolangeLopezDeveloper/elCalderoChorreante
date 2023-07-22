@@ -1,6 +1,7 @@
 .footer {
-    background-color: #000;
-    color: #fff;
+    background: rgb(11,48,179);
+    background: linear-gradient(354deg, rgba(11,48,179,1) 11%, rgba(10,145,41,0.8323704481792717) 57%, rgba(18,17,17,1) 95%);
+      color: #000;
     min-height: 20vh;
     min-width: 100vw;
     font-family: 'Island Moments';

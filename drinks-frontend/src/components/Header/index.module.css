@@ -2,13 +2,16 @@
 
   color: #fff;
   text-align: center;
-  min-height: 40vh;
+  min-height: 30vh;
   min-width: 100vw;
-  background-image: url('../../assets/images/banner5.jpg');
-  background-repeat: no-repeat;
+  background: rgb(11,48,179);
+  background: linear-gradient(354deg, rgba(18,17,17,1) 11%, rgba(10,145,41,0.8323704481792717) 57%, rgba(11,48,179,1) 95%);
+
+/*   background-image: url('../../assets/images/CalderoChorreanteLogo.png');
+ */  background-repeat: no-repeat;
   background-size: 100vw;
   /* background-position: right; */
-  background-position-y: center;
+  /* background-position-y: center; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -23,7 +26,9 @@
 .header h1 {
   font-size: 50px;
   font-family: 'Island Moments';
-  background-color: rgba(0, 0, 0, 0.7);
+background-color: rgba(0, 0, 0, 0.3);
+border-radius: 25px;
+  
 }
 
 .header h5 {
@@ -50,4 +55,9 @@
   background-color: rgba(0, 0, 0, 0.8);
   width: 100vh;
   color: #fff;
+}
+.logo{
+  border-radius: 50%;
+  width: 250px;
+  
 }

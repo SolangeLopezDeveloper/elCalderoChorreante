@@ -1,7 +1,5 @@
 import { Container, Button, Badge } from 'react-bootstrap';
 import styles from './index.module.css';
-
-
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
@@ -9,17 +7,14 @@ import { CartCanvas } from '../CartCanvas';
 import { useState } from 'react';
 import useCart from '../../hooks/useCart';
 import { Link } from 'react-router-dom';
-
-
 import useUser from '../../hooks/useUser';
 /* import { SearchForm } from '../SearchForm'; */
+import Logo from '../../assets/images/CalderoChorreanteLogo.png'
 
 
 export const Header = () => {
 
   const [showCart, setShowCart] = useState(false)
-
-
 
   const handleShowCart = () => setShowCart(true)
   const handleCloseCart = () => setShowCart(false)
@@ -35,8 +30,7 @@ logout()
     <div>
       <header className={`{py-5} ${styles.header}`}>
         <h1>
-          <Link to="/home"> El Caldero Chorreante <br />
-            Magia Líquida</Link>
+          <Link to="/home"><img src={Logo} alt="" className={styles.logo} /></Link>
         </h1>
       </header>
       <div className=''>
