@@ -8,7 +8,7 @@ export const Bienvenida = ({ children }) => {
 
     <div >
       <Header />
-      <Container >
+      <Container className='d-flex justify-content-center' >
         {children}
       </Container>
 

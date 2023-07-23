@@ -28,7 +28,7 @@ export const getRecipeService = async (idDrink) => {
         const url = `${apiURL}lookup.php?i=${idDrink}`
         const { data } = await axios.get(url)
         console.log(data);
-        return data.drinks[0] || {}
+        return data.drinks || {}
 
 
     } catch (error) {
@@ -53,7 +53,7 @@ export const getDrinkByIdService = async (drinkId) => {
 }
 export const getPicadasService = async () => {
     try {
-        const url = `${apiURLPropia}drinks`
+        const url = `${apiURLPropia}products`
         const {data} = await axios.get(url)
         console.log(data);
         return data

@@ -16,7 +16,7 @@ export const DrinkCard = ({ drink }) => {
     const { strDrink, strDrinkThumb, idDrink, price } = drink;
     const { handleDrinkIdClick } = useDrinks()
 
-    const { handleToggleFavorite, /* favorites */ user } = useUser()
+    const { handleToggleFavorite, favorites, user } = useUser()
 
 
     const { dispatch } = useCart()
@@ -42,9 +42,7 @@ export const DrinkCard = ({ drink }) => {
             :
             Swal.fire({
                 icon: 'error',
-                title: '¡Debes loguarte!',
-                showConfirmButton: false,
-                timer: 1500
+                title: '¡Debes iniciar sesion!'
             })
     }
     return (
@@ -60,14 +58,15 @@ export const DrinkCard = ({ drink }) => {
                         </Card.Text>
                         <h5>{`$ ${price}`}</h5>
                         <div className="d-flex justify-content-around align-text-center btn btn-lg p-2">
-                            <a href="" onClick={handleFavorite}
-                              /*   {
-                                favorites.includes(idDrink) ?
-                                    <i className="fa-solid fa-star fa-lg"></i>
+                            <a
+                                style={{ cursor: "pointer" }}
+                                onClick={handleFavorite} >
+                                {
+                                favorites.includes(idDrink) ? (<i className="fa-solid fa-star fa-lg"></i>)
                                     :
-                                    <i className="fa-regular fa-star fa-lg"></i>
-                                } */
-                            ></a>
+                                    (<i className="fa-regular fa-star fa-lg"></i>)
+                                }
+                           </a>
 
                         </div>
 

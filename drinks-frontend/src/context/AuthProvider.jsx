@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from 'react';
-import Proptypes from 'prop-types'
+import {PropTypes} from 'prop-types'
 import { loginAuthService, profileUserService, toggleFavoriteService } from '../services/auth.services';
 import jwtDecoded from 'jwt-decode'
 import { useNavigate } from 'react-router-dom';
@@ -19,10 +19,11 @@ const AuthProvider = ({ children }) => {
     const navigate = useNavigate()
 
     useEffect(() => {
-    const token = sessionStorage.getItem('drinkToken')
+    const token = sessionStorage.getItem('DrinksToken')
     if(token){
         const decodedToken = jwtDecoded(token)
         setUser(decodedToken.user)
+        
         setFavorites(decodedToken.user.favorites)
 
     }
@@ -55,12 +56,15 @@ const AuthProvider = ({ children }) => {
     const login = async (info) => {
         try {
             const { token } = await loginAuthService(info)
-            sessionStorage.setItem('drinkToken', token)
+            sessionStorage.setItem('DrinksToken', token)
             const decodedToken = token ? jwtDecoded(token) : null;
             setUser(decodedToken.user)
-            setFavorites(user.favorites)
+            setFavorites(decodedToken.user.favorites)
+            //console.log(decodedToken.user);
             //console.log(decodedToken);
-            navigate('/profile')
+   
+         
+            navigate('/user/profile')
 
         } catch (error) {
             //console.log(error);
@@ -71,12 +75,13 @@ const AuthProvider = ({ children }) => {
     const getProfile = async () => {
         try {
 
-            const token = sessionStorage.getItem('drinkToken')
+            const token = sessionStorage.getItem('DrinksToken')
 
             if (!token) { return null }
 
             const response = await profileUserService(token)
             //console.log(response);
+       
             setUserProfile(response.user)
         } catch (error) {
             handleAlert(error)
@@ -87,7 +92,7 @@ const AuthProvider = ({ children }) => {
         setUser(null)
         setUserProfile({})
         setFavorites([])
-        sessionStorage.removeItem('drinkToken')
+        sessionStorage.removeItem('DrinksToken')
     }
 
     const contextValue = {
@@ -111,7 +116,7 @@ const AuthProvider = ({ children }) => {
 }
 
 AuthProvider.propTypes = {
-    children: Proptypes.node.isRequired
+    children: PropTypes.node.isRequired
 }
 
 export {

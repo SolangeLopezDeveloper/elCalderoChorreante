@@ -30,7 +30,7 @@ export const MainLayout = ({ children }) => {
         <h3>¿Sos Mayor de 18 años?</h3>
 
       </div>
-      <div className='d-flex gap-5 mb-4 justify-center'>
+      <div className='d-flex gap-5 mb-4 justify-content-center'>
 
         <button className='btn btn-primary' onClick={handleSiClick}>SI</button>
 

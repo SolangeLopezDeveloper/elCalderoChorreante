@@ -8,28 +8,30 @@ export const Picadas = () => {
 
   return (
     <>
-      <div>Picadas</div>
-      <Container>
-        <Row xs={1} md={2} className="g-4">
-          {Array.from({ length: 4 }).map((_, idx) => (
-            <Col key={idx}>
-              <Card>
-                <Card.Img variant="top" src={Image} />
-                <Card.Body>
-                  <Card.Title>Bebida</Card.Title>
-                  <Card.Text>
-                    {name}
-                    {price}
-                    {urlImage}
-                  </Card.Text>
-                  <h3>$2000</h3>
-                  <i className="fa-solid fa-cart-plus"></i>
-                </Card.Body>
-              </Card>
-            </Col>
-          ))}
-        </Row>
-      </Container>
+      <div>
+        <h1>Picadas</h1>
+        <Container>
+          <Row xs={1} md={2} lg={4} className="g-4">
+            {Array.from({ length: 4 }).map((_, idx) => (
+              <Col key={idx}>
+                <Card>
+                  <Card.Img variant="top" src={Image} />
+                  <Card.Body>
+                    <Card.Title>Bebida</Card.Title>
+                    <Card.Text>
+                      {name}
+                      {price}
+                      {urlImage}
+                    </Card.Text>
+                    <h3>$2000</h3>
+                    <i className="fa-solid fa-cart-plus"></i>
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
+          </Row>
+        </Container>
+      </div>
     </>
   )
 }

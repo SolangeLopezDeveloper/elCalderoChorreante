@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap'
 import { registerAuthService } from '../../services/auth.services';
+import {Link} from 'react-router-dom'
 
 
 const Register = () => {
@@ -33,8 +34,10 @@ const Register = () => {
   }
 
   return (
-    <div className="w-100" style={{ maxWidth: '400px' }}>
+    
+    <div className="w-100 mb-3" style={{ maxWidth: '400px' }}>
       <h2 className="mb-2">Registrate</h2>
+      <hr />
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
@@ -43,7 +46,7 @@ const Register = () => {
 
         {
           (formik) => (
-            <Form onSubmit={formik.handleSubmit} className="card flex justify-content-center gap-2">
+            <Form onSubmit={formik.handleSubmit} className="flex justify-content-center gap-2">
 
               <Form.Group className="mb-2" >
                 <Form.Label htmlFor="name">Nombre</Form.Label>
@@ -96,7 +99,7 @@ const Register = () => {
                   name="password"
                   type="password"
                   as={Form.Control}
-                  style={{ width: '350px' }} />
+                  style={{ width: '400px' }} />
                 <ErrorMessage
                   name="password"
                   component={Form.Text}
@@ -109,7 +112,13 @@ const Register = () => {
         }
 
       </Formik>
+      <div className="contentsButonLogin ">
+ <Link to={'/homeSearch'} className="buttonLogin">Volver al Home</Link>
+
+   <Link to={'/login'} className="buttonLogin">¿Ya estás registrado?</Link>
+ </div>
     </div>
+
 
   )
 }

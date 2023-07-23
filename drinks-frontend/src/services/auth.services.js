@@ -33,8 +33,9 @@ export const loginAuthService = async (info) => {
                 },
 
             })
+       
+        //console.log(data);
         return data
-
     } catch (error) {
         //console.log(error);
         throw error.response.data
@@ -58,7 +59,7 @@ export const profileUserService = async (token) => {
 export const toggleFavoriteService = async (idDrink) => {
     try {
 
-        const token = sessionStorage.getItem('drinkToken')
+        const token = sessionStorage.getItem('DrinksToken')
 
         if (!token) { return null }
 
