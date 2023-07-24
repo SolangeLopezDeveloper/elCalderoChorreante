@@ -10,7 +10,7 @@ a {
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: #3c43c7;
 }
 
 body {
@@ -31,11 +31,14 @@ h1 {
   font-size: 1rem;
   font-weight: 500;
   font-family: inherit;
-  background-color: #4e11f7;
+  background-color:  rgb(57, 138, 57);
   cursor: pointer;
   transition: border-color 0.25s;
   width: 50%;
 
+}
+.buttonLogin:hover{
+  box-shadow:#3c43c7 1px 5px 5px;
 }
 .boxTituloHome{
   display: flex;
@@ -47,7 +50,7 @@ h1 {
   padding: 5px;
 }
 .buttonSearch i{
-  color: #535bf2;
+  color: #3c43c7;
 }
 .contentsButonLogin{
   display: flex;
@@ -79,7 +82,7 @@ button:focus-visible {
 @media (prefers-color-scheme: light) {
  
   a:hover {
-    color: #747bff;
+    color: #464dcc;
   }
   button {
     background-color: #f9f9f9;

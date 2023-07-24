@@ -5,14 +5,15 @@ import Licores from '../../assets/images/licores.jpg'
 import Picadas from '../../assets/images/Veggie01.jpg'
 import Promos from '../../assets/images/propmofernet.jpg'
 import { Link } from 'react-router-dom'
+import styles from './index.module.css';
 
 
 export const Productos = () => {
     return (
-        <Container>
-            <Row >
-                <div className="d-flex justify-content-between">
-                    <Link to="/cervezas">
+        <Container >
+            <Row  >
+                <div className={styles.containerProduct}>
+                    <Link to="/cervezas" className={styles.containerProductBox}>
                         <Card border="warning" style={{ width: '18rem', backgroundColor: 'orange' }}>
 
                             <Card.Title className='text-white text-center'>Cervezas</Card.Title>
@@ -25,7 +26,7 @@ export const Productos = () => {
                             </div>
                         </Card>
                     </Link>
-                    <Link to="/vinos">
+                    <Link to="/vinos"className={styles.containerProductBox}>
                         <Card border="danger" style={{ width: '18rem', backgroundColor: 'red' }}>
                             <Card.Title className="text-white text-center">Vinos</Card.Title>
                             <div className="position-relative">
@@ -36,7 +37,7 @@ export const Productos = () => {
                             </div>
                         </Card>
                     </Link>
-                    <Link to="/licores">
+                    <Link to="/licores" className={styles.containerProductBox}>
                         <Card border="info" style={{ width: '18rem', backgroundColor: 'blue' }}>
                             <Card.Title className='text-white text-center'>Licores</Card.Title>
                             <div className="position-relative">
@@ -50,8 +51,8 @@ export const Productos = () => {
                 </div>
             </Row>
             <Row className='mt-4'>
-                <div className="d-flex justify-content-around">
-                    <Link to="/picadas">
+                <div className={styles.containerProduct}>
+                    <Link to="/picadas" className={styles.containerProductBox}>
                         <Card border="dark" style={{ width: '18rem', backgroundColor: 'black' }}>
                             <Card.Title className='text-white text-center'>Picadas</Card.Title>
                             <div className="position-relative">
@@ -63,7 +64,7 @@ export const Productos = () => {
                             </div>
                         </Card>
                     </Link>
-                    <Link to="/promos">
+                    <Link to="/promos" className={styles.containerProductBox}>
                         <Card border="success" style={{ width: '18rem', backgroundColor: 'green' }}>
                             <Card.Title className='text-white text-center'>Promos</Card.Title>
                             <div className="position-relative">

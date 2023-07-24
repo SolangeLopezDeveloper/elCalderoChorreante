@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Container } from 'react-bootstrap';
+
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
 export const Bienvenida = ({ children }) => {
@@ -8,9 +8,9 @@ export const Bienvenida = ({ children }) => {
 
     <div >
       <Header />
-      <Container className='d-flex justify-content-center' >
+      <div className='d-flex justify-content-center m-3' >
         {children}
-      </Container>
+      </div>
 
       <Footer />
     </div>

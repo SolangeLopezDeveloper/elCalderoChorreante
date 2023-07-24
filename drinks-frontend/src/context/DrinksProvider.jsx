@@ -40,7 +40,7 @@ const DrinksProvider = ({ children }) => {
                 setRecipe(recipeData)
                 setShowModal((show) => !show)
                 setIdDrink(false)
-                setDrinks(recipeData)
+          
             } catch (error) {
                 console.log(error)
             } finally {

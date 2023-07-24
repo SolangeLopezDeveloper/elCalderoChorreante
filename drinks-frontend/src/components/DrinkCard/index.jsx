@@ -6,6 +6,7 @@ import useCart from '../../hooks/useCart'
 import { types } from '../../types'
 import Swal from "sweetalert2";
 import useUser from "../../hooks/useUser";
+import { useNavigate } from 'react-router-dom';
 
 
 export const DrinkCard = ({ drink }) => {
@@ -14,6 +15,9 @@ export const DrinkCard = ({ drink }) => {
     const { handleDrinkIdClick } = useDrinks()
     const { handleToggleFavorite, favorites, user } = useUser()
     const { dispatch } = useCart()
+
+    const navigate = useNavigate()
+
     const handleAddCart = () => {
         Swal.fire({
             position: 'top-end',
@@ -31,58 +35,61 @@ export const DrinkCard = ({ drink }) => {
         user ?
             handleToggleFavorite(idDrink)
             :
-            Swal.fire({
+            (Swal.fire({
                 icon: 'error',
                 title: '¡Debes iniciar sesion!'
-            })
+            })) &&
+            navigate('/login')
     }
     return (
         <>
             <Col md={4} lg={3}>
-                <Card className={styles.strDrink}>
-                    <Card.Img variant="top" src={strDrinkThumb}
-                        alt={`Imagen de ${strDrink}`} className={styles.strImg} />
-                    <Card.Body>
-                        <Card.Title>{strDrink}</Card.Title>
-                        <Card.Text>
-                            {strDrink}
-                        </Card.Text>
-                        <h5>{`$ ${price}`}</h5>
-                        <div className="d-flex justify-content-around align-text-center btn btn-lg p-2">
-                            <a
-                                style={{ cursor: "pointer" }}
-                                onClick={handleFavorite} >
-                                {
-                                favorites.includes(idDrink) ? (<i className="fa-solid fa-star fa-lg"></i>)
-                                    :
-                                    (<i className="fa-regular fa-star fa-lg"></i>)
-                                }
-                           </a>
+           
+                    <Card className={styles.strDrink}>
+                        <Card.Img variant="top" src={strDrinkThumb}
+                            alt={`Imagen de ${strDrink}`} className={styles.strImg} />
+                        <Card.Body>
+                            <Card.Title>{strDrink}</Card.Title>
+                            <Card.Text>
+                                {strDrink}
+                            </Card.Text>
+                            <h5>{`$ ${price}`}</h5>
+                            <div className="d-flex justify-content-around align-text-center btn btn-lg p-2">
+                                <a
+                                    style={{ cursor: "pointer", color: "green" }}
+                                    onClick={handleFavorite} >
+                                    {
+                                        favorites.includes(idDrink) ? (<i className="fa-solid fa-star fa-lg"></i>)
+                                            :
+                                            (<i className="fa-regular fa-star fa-lg"></i>)
+                                    }
+                                </a>
 
-                        </div>
+                            </div>
 
-                        <div className="d-grid gap-2">
-                            <Button
-                                variant={'secondary'}
+                            <div className="d-grid gap-2">
+                                <Button
+                                    variant={'primary'}
 
-                                className='w-100 text-uppercase mt-2 mb-3'
-                                onClick={() => {
-                                    handleDrinkIdClick(idDrink);
-                                    /*   handleShowModalClick(); */
-                                }}> Desplegar Receta
+                                    className='w-100 text-uppercase mt-2 mb-3'
+                                    onClick={() => {
+                                        handleDrinkIdClick(idDrink);
+                                        /*   handleShowModalClick(); */
+                                    }}> Desplegar Receta
 
-                            </Button>
-                            <Button
-                                variant={'success'}
-                                className='w-100 text-uppercase mt-2 mb-3'
-                                onClick={handleAddCart} >
-                                Añadir al Carrito
-                                <i className="fa-solid fa-cart-plus ms-3"></i>
-                            </Button>
-                        </div>
+                                </Button>
+                                <Button
+                                    variant={'success'}
+                                    className='w-100 text-uppercase mt-2 mb-3'
+                                    onClick={handleAddCart} >
+                                    Añadir al Carrito
+                                    <i className="fa-solid fa-cart-plus ms-3"></i>
+                                </Button>
+                            </div>
 
-                    </Card.Body>
-                </Card>
+                        </Card.Body>
+                    </Card>
+        
             </Col >
         </>
     )

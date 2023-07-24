@@ -1,20 +1,41 @@
-.box{
+.boxSearchHome {
     padding: 150px;
-    background-image:url('/src/assets/images/caldero.jpg');
+    background-image: url('/src/assets/images/caldero.jpg');
     margin-bottom: 15px;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    width: 90%;
+
+    
 }
-.containerBody{
-border: solid 2px black;
+
+.containerBody {
+    border: solid 2px black;
     border-radius: 5px;
     margin: 10px;
     padding: 15px;
     background-color: #fff;
     justify-content: center;
-
-
-
 }
 
+@media (max-width:425px) {
+    .boxSearchHome {
+        padding: 10px;
+    }
+}
+
+@media (max-width:768px) {
+    .boxSearchHome {
+        padding: 20px;
+        margin: 5px;
+    }
+}
+@media (max-width:1024px){
+    .boxSearchHome {  
+        padding: 10px;
+}}
+@media (max-width:1440px){
+    .boxSearchHome {  
+        padding: 10px;
+}}

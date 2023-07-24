@@ -1,13 +1,22 @@
 .profile {
-    text-align: center;
+    /*  text-align: center;
     display: flex;
     align-items: center;
-    flex-direction: column;
+    flex-direction: column;   */
+    flex-wrap: wrap;
+    display: flex;
 
 }
 
 .profile h3 {
     width: 100%;
+
+}
+
+.profile h2 {
+    width: 90%;
+    margin: 25px auto;
+    border-top: solid 1px green;
 }
 
 .button {
@@ -15,45 +24,56 @@
     justify-content: center;
     width: 20%;
     background-color: black;
-    padding: 5px;
+    padding: 15px;
     border-radius: 5px;
-    margin-bottom: 10px;
-
-
-}
-
-.strDrink {
-    width: 30%;
-    font-size: 15px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    
-  
-
-}
-
-.strDrink Img {
-    width: 120px;
-    
+    margin: 20px;
 
 }
 
 .contenedor_fav {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
     width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 1px;
+}
 
+.strDrink {
+    width: 25rem;
+    box-shadow: 5px 2px 5px black;
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 2px;
+    justify-content: center;
+    align-items: center;
+animation: fadeIn 3s;
 
-
+}
+@keyframes fadeIn{
+    from{
+        opacity:0;
+    }
+    to{
+        opacity: 1;
+    }
 }
 
 .strImg {
-
+    height: 70%;
     border-radius: 50%;
+    box-shadow: 7px 2px 5px black;
 }
-.sectionFav{
-  
+
+.strDrink Img {
+    width: 100px;
+}
+@media(max-width:426px){
+.strDrink{
+    width: 18rem;
+}
+.button{
+    width: 100%;
+}
 }

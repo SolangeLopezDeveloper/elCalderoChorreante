@@ -33,14 +33,18 @@ export const CartCanvas = ({ showCart, handleCloseCart }) => {
 
     const handleConfirm = () => {
         Swal.fire({
-            position: 'top-end',
+            
             icon: 'success',
             title: '¡Compra Realizada!',
+            html: 'Recibirás tu cupón de pago en Mercado Pago',
             showConfirmButton: false,
-            timer: 1500
+            timerProgressBar: true,
+            timer: 3500
         })
         cleanCart()
     }
+
+
 
     return (
         <Offcanvas show={showCart} onHide={handleCloseCart} placement='end' className={styles.offCanvas}>
