@@ -1,6 +1,6 @@
 const Favorite = require('../models/Favorite');
 const createError = require('http-errors');
-const User = require('../models/Users');
+const User = require('../models/User');
 
 const profile = async (req, res) => {
     return res.status(200).json({
@@ -16,9 +16,10 @@ const toggleFavorite = async (req, res) => {
             throw createError(401, "No existe autorización")
         }
 
-        const user = await User.findById(req.user.id).populate('favorites')
+        const user = await User.findById(req.user.id).populate('favorites', 'drink')
 
         const { drink } = req.query
+        
         if (!drink) {
             throw createError(400, "Se requiere el Id de la bebida")
         }

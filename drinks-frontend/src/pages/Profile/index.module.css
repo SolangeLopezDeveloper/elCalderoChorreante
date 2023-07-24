@@ -1,12 +1,16 @@
 .profile {
-text-align: center;
-display: flex;
-align-items: center;
-flex-direction: column;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 
 }
 
-.button{
+.profile h3 {
+    width: 100%;
+}
+
+.button {
     display: flex;
     justify-content: center;
     width: 20%;
@@ -15,5 +19,41 @@ flex-direction: column;
     border-radius: 5px;
     margin-bottom: 10px;
 
- 
+
+}
+
+.strDrink {
+    width: 30%;
+    font-size: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+  
+
+}
+
+.strDrink Img {
+    width: 120px;
+    
+
+}
+
+.contenedor_fav {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+
+
+
+}
+
+.strImg {
+
+    border-radius: 50%;
+}
+.sectionFav{
+  
 }

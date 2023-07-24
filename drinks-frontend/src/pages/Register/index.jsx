@@ -2,13 +2,18 @@ import PropTypes from 'prop-types';
 import { ErrorMessage, Field, Formik } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
-import { Form, Button } from 'react-bootstrap'
+import { Form, Button, Alert } from 'react-bootstrap'
 import { registerAuthService } from '../../services/auth.services';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { useState } from 'react';
+
 
 
 const Register = () => {
   const navigate = useNavigate()
+
+
+  const [alert, setAlert] = useState(null);
 
   const initialValues = {
     name: "",
@@ -26,15 +31,29 @@ const Register = () => {
 
   })
 
-  const handleSubmit = async (values) => {
-    const response = await registerAuthService(values)
+  const handleAlert = (error) => {
+    setAlert(error.message)
+    setTimeout(() => {
+        setAlert(null)
+    }, 3000);
+}
 
-    console.log(response);
-    navigate('/login')
+
+  const handleSubmit = async (values) => {
+    try {
+      const response = await registerAuthService(values)
+
+      console.log(response);
+      navigate('/login')
+    } catch (error) {
+      handleAlert(error)
+     
+    }
+ 
   }
 
   return (
-    
+
     <div className="w-100 mb-3" style={{ maxWidth: '400px' }}>
       <h2 className="mb-2">Registrate</h2>
       <hr />
@@ -47,7 +66,7 @@ const Register = () => {
         {
           (formik) => (
             <Form onSubmit={formik.handleSubmit} className="flex justify-content-center gap-2">
-
+              {alert && <Alert variant="danger">{alert}</Alert>}
               <Form.Group className="mb-2" >
                 <Form.Label htmlFor="name">Nombre</Form.Label>
                 <Field id="name"
@@ -91,7 +110,7 @@ const Register = () => {
                   className="text-danger ms-2"
                 />
               </Form.Group>
-             
+
               <Form.Group className="mb-2">
                 <Form.Label htmlFor="password">Contraseña</Form.Label>
                 <Field
@@ -113,10 +132,10 @@ const Register = () => {
 
       </Formik>
       <div className="contentsButonLogin ">
- <Link to={'/homeSearch'} className="buttonLogin">Volver al Home</Link>
+        <Link to={'/homeSearch'} className="buttonLogin">Volver al Home</Link>
 
-   <Link to={'/login'} className="buttonLogin">¿Ya estás registrado?</Link>
- </div>
+        <Link to={'/login'} className="buttonLogin">¿Ya estás registrado?</Link>
+      </div>
     </div>
 
 

@@ -1,7 +1,9 @@
 const generateJWT = require('../helpers/generateJWT');
 const generateTokenRandom = require('../helpers/generateTokenRandom');
-const User = require('../models/Users');
+const User = require('../models/User');
 const createError = require('http-errors');
+
+const FavoriteInfo = require('../models/Favorite');
 
 const register = async (req, res) => {
 
@@ -22,6 +24,7 @@ const register = async (req, res) => {
         }
 
         user = new User(req.body);
+
         user.token = generateTokenRandom();
         const userStore = await user.save();
 
@@ -50,23 +53,33 @@ const login = async (req, res) => {
         console.log(req.body);
 
         const { email, password } = req.body;
+
         if ([email, password].includes("") || !email || !password) {
             throw createError(400, "Todos los campos son requeridos")
         }
         let user = await User.findOne({
             email
         }).populate('favorites')
+
         if (!user) {
             throw createError(400, "Credenciales inexistentes")
         }
+
+
+
         if (await user.checkedPassword(password)) {
+            console.log(user.favorites);
+            let favoriteDrink = user.favorites.map(favorite => favorite.drink);
+          console.log(favoriteDrink)
+
             return res.status(200).json({
                 ok: true,
                 token: generateJWT({
                     user: {
                         id: user._id,
                         name: user.name,
-                        favorites: user.favorites ? user.favorites.map(favorite => favorite.drink) : []
+                        email,
+                        favorites: favoriteDrink
 
 
                     }

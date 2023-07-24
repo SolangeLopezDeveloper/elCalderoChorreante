@@ -1,7 +1,6 @@
-
 const mongoose = require('mongoose');
 
-const userSchema = new mongoose.Schema({
+const favoriteSchema = new mongoose.Schema({
     drink: {
         type: String,
         required : true,
@@ -18,7 +17,4 @@ const userSchema = new mongoose.Schema({
 }
 
 )
-
-
-
-module.exports = mongoose.model('Favorite', userSchema)
+module.exports = mongoose.model('Favorite', favoriteSchema)

@@ -2,7 +2,7 @@ import { types } from '../types'
 
 export const cartReducer = (state = [], action) => {
 
-  const { idDrink } = action.payload
+  const idDrink  = action.payload?.idDrink;
 
   const item = state.find(item => item.idDrink === idDrink);
 

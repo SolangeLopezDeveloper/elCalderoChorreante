@@ -8,19 +8,12 @@ import Swal from "sweetalert2";
 import useUser from "../../hooks/useUser";
 
 
-
-
-
 export const DrinkCard = ({ drink }) => {
     /* console.log(drink); */
     const { strDrink, strDrinkThumb, idDrink, price } = drink;
     const { handleDrinkIdClick } = useDrinks()
-
     const { handleToggleFavorite, favorites, user } = useUser()
-
-
     const { dispatch } = useCart()
-
     const handleAddCart = () => {
         Swal.fire({
             position: 'top-end',
@@ -34,8 +27,6 @@ export const DrinkCard = ({ drink }) => {
             payload: drink
         })
     }
-
-
     const handleFavorite = () => {
         user ?
             handleToggleFavorite(idDrink)

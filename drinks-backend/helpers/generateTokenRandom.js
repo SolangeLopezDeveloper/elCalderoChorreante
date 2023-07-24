@@ -1,6 +1,7 @@
 module.exports = () => {
-    const randomNumber = Math.random().toString(32).substring(2)
-    const date = Date.now().toString(32)
-
-    return randomNumber + date
+    const randomNumber = Math.random();
+    const randomString = randomNumber.toString(32);
+    const random = randomString.substring(2);
+    const date = Date.now().toString(32);
+    return random + date
 }

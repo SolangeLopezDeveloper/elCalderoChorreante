@@ -19,7 +19,7 @@ app
 .use(express.urlencoded({ extended: false }))
 .use(cors())
 .use('/', indexRouter)
-.use('/', productRouter)
+.use('/product', productRouter)
 
 .use(function(req, res, next) {
   next(createError(404))

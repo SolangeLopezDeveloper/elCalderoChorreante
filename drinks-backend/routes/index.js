@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { register, login } = require('../controllers/authController');
+const { getFavoriteDrink } = require('../controllers/productController');
 const { profile, toggleFavorite } = require('../controllers/usersController');
 const checkToken = require('../middlewares/checkToken');
 
@@ -17,4 +18,7 @@ router
 
 .get('/api/v1/profile',checkToken, profile)
 .get('/api/v1/favorite', checkToken, toggleFavorite)
+.get('/api/v1/favoriteDrink', getFavoriteDrink)
+
+
 module.exports = router;

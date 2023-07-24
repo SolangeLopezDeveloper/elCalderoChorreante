@@ -1,4 +1,5 @@
 const createError = require('http-errors');
+const User = require('../models/User')
 const { verify } = require('jsonwebtoken')
 
 module.exports = async (req, res, next) => {
@@ -11,7 +12,7 @@ module.exports = async (req, res, next) => {
         const token = req.headers.authorization;
         const decoded = verify(token, process.env.JWT_SECRET)
 
-        req.user = await User.findById(decoded.user.id).select("-password -token -cheked -createdAt -updatedAt -__v").populate('favorites')
+        req.user = await User.findById(decoded.user.id).select("-password -token -cheked -createdAt -updatedAt -__v")
 
         next()
 
@@ -28,6 +29,8 @@ module.exports = async (req, res, next) => {
             case "invalid token":
                 message = "El token es inválido"
                 break;
+            case "invalid signature":
+                message = "Firma inválida"
             default:
                 message = error.message
                 break;

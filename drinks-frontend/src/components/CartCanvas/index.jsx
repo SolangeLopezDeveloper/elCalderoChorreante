@@ -4,18 +4,43 @@ import useCart from '../../hooks/useCart'
 import { CartItem } from '../CartItem'
 import { types } from '../../types'
 import styles from './index.module.css'
+import { useEffect, useState } from 'react'
+import Swal from "sweetalert2";
 
 export const CartCanvas = ({ showCart, handleCloseCart }) => {
-
-    const { cart, dispatch } = useCart()
+    const { cart, dispatch } = useCart();
 
     const cleanCart = () => {
         dispatch({
             type: types.cleanCart,
-            payload: []
-        })
-    }
+            payload: {},
+        });
+    };
 
+    const [total, setTotal] = useState(0);
+
+    const calculateTotal = () => {
+        const newTotal = cart.reduce((acc, drink) => acc + (drink.price * drink.quantity), 0);
+        setTotal(newTotal);
+    };
+
+    useEffect(() => {
+        calculateTotal();
+    }, [cart]);
+
+
+
+
+    const handleConfirm = () => {
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: '¡Compra Realizada!',
+            showConfirmButton: false,
+            timer: 1500
+        })
+        cleanCart()
+    }
 
     return (
         <Offcanvas show={showCart} onHide={handleCloseCart} placement='end' className={styles.offCanvas}>
@@ -24,30 +49,36 @@ export const CartCanvas = ({ showCart, handleCloseCart }) => {
                 <Offcanvas.Title>TU CARRITO</Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body className={styles.offCanvasBody}>
-                <ListGroup>
-                    {cart.length ?
-                        (
-                            <div>{
-                                cart.map(drink => <CartItem key={drink.idDrink} drink={drink} />)}
 
-                                <div className='d-flex gap-3 justify-content-center mt-4'>
-                                    <Button onClick={cleanCart}>Total</Button>
-                                    <input type="text"
-                                        style={{ width: "150px" }}
-                                        className='form-control' />
-                                </div>
-                                <div className='d-flex justify-content-center mt-4'>
-                                    <button className='btn btn-sm btn-primary'>
-                                        Confirmar compra
+                {cart.length ?
+                    (<div>
+                        <div>
+                            <ListGroup>
+                                {cart.map((drink) => (<CartItem key={drink.idDrink} drink={drink} calculateTotal={calculateTotal}/>))}
+                            </ListGroup>
+                        </div>
+                        <Button onClick={cleanCart}>Vaciar</Button>
 
-                                    </button>
-                                </div>
-                            </div>
-                        )
-                        :
-                        <p>No hay productos</p>
-                    }
-                </ListGroup>
+                        <div className='d-flex gap-3 justify-content-center mt-4'>
+                            <Button>Total de tu compra</Button>
+
+                            <input type="text"
+                                style={{ width: "150px" }}
+                                className='form-control'
+                                value={`$${total}`}
+                                readOnly />
+                        </div>
+                        <div className='d-flex justify-content-center mt-4'>
+                            <Button onClick={handleConfirm} className='btn btn-sm btn-primary'>
+                                Confirmar compra
+
+                            </Button>
+                        </div>
+                    </div>)
+                    :
+                    <p>No hay productos</p>
+                }
+
 
             </Offcanvas.Body>
 
@@ -59,4 +90,5 @@ export const CartCanvas = ({ showCart, handleCloseCart }) => {
 CartCanvas.propTypes = {
     showCart: PropTypes.bool,
     handleCloseCart: PropTypes.func
+
 }

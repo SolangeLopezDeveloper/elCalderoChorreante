@@ -18,7 +18,7 @@ export const MainLayout = ({ children }) => {
 
   }
   const handleNoClick = () => {
-    window.location.href = 'https://youtu.be/THNpbRrl0xo'
+    window.location.href = 'https://youtu.be/7ZH0mwW_g04'
   }
 
   return (

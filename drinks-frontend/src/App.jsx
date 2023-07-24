@@ -16,9 +16,10 @@ function App() {
 
   return (
     <BrowserRouter>
+       <DrinksProvider>
       <AuthProvider>
         <CategoriesProvider>
-          <DrinksProvider>
+       
             <CartProvider>
             <MainLayout>
               <Bienvenida >
@@ -26,9 +27,10 @@ function App() {
               </Bienvenida  >
               </MainLayout>
             </CartProvider>
-          </DrinksProvider>
+        
         </CategoriesProvider>
       </AuthProvider>
+      </DrinksProvider>
     </BrowserRouter>
 
 

@@ -40,7 +40,7 @@ const AuthProvider = ({ children }) => {
         } else {
             setFavorites(favorites.filter(favorite => favorite !== idDrink))
         }
-
+console.log(favorites);
         toggleFavoriteService(idDrink)
 
     }
@@ -62,6 +62,7 @@ const AuthProvider = ({ children }) => {
             setFavorites(decodedToken.user.favorites)
             //console.log(decodedToken.user);
             //console.log(decodedToken);
+         
    
          
             navigate('/user/profile')

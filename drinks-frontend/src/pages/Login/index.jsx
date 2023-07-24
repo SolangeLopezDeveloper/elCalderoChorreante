@@ -3,12 +3,13 @@ import useUser from "../../hooks/useUser";
 import { Form, Button, Alert } from 'react-bootstrap'
 import * as Yup from 'yup';
 import { ErrorMessage, Field, Formik } from 'formik';
+import { useNavigate } from 'react-router-dom';
 
 export const Login = () => {
 
   const { login, alert } = useUser()
 
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
 
   const initialValues = {
     email: "",
@@ -24,7 +25,7 @@ export const Login = () => {
     //console.log(values);
     login(values)
 
-    //navigate('/home')
+    navigate('/home')
   }
   return (
 

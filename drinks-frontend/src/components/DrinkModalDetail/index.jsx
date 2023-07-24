@@ -10,10 +10,14 @@ export const DrinkModalDetail = () => {
 
     const { showModal, handleShowModalClick, recipe, loading, drinks } = useDrinks();
 
+
+
     const { strDrink, strDrinkThumb, strInstructions, idDrink } = recipe;
 
     const showIngredients = () => {
+       
         const ingredients = []
+
         for (let i = 1; i < 15; i++) {
             if (recipe[`strIngredient${i}`]) {
                 ingredients.push(

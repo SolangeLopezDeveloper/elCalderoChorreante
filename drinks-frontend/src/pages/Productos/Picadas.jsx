@@ -1,36 +1,55 @@
-import { Container, Row, Col, Card } from 'react-bootstrap'
-import Image from '../../assets/images/Veggie01.jpg'
-import usePicadas from '../../hooks/usePicadas'
+ import { Container, Row, Col, Card, Button } from 'react-bootstrap'
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import styles from './index.module.css';
+
+const apiURL = import.meta.env.VITE_API_URL_PRODUCTS;
+
+
 export const Picadas = () => {
 
+  const [picadas, setPicadas] = useState([]);
 
-  const { name, price, urlImage } = usePicadas()
+useEffect(()=>{
+  axios.get(`${apiURL}picadas`)
+  .then((response)=>{
+    setPicadas(response.data.picadas)
+    console.log(response.data);
+  })
+  .catch((error) =>{
+    console.error('ocurrió un error',error)
+  })
+
+},[])
 
   return (
     <>
-      <div>
+        <div className={styles.product}>
         <h1>Picadas</h1>
-        <Container>
+       
+         <Container>
           <Row xs={1} md={2} lg={4} className="g-4">
-            {Array.from({ length: 4 }).map((_, idx) => (
-              <Col key={idx}>
+          {picadas.map((product) => (
+              <Col key={product._id}>
                 <Card>
-                  <Card.Img variant="top" src={Image} />
+                  <Card.Img variant="top" src= {`${product.urlImage}`} />
                   <Card.Body>
-                    <Card.Title>Bebida</Card.Title>
+                    <Card.Title>{product.name}</Card.Title>
                     <Card.Text>
-                      {name}
-                      {price}
-                      {urlImage}
+                      
+                      {`$ ${product.price}`}
+                     
                     </Card.Text>
-                    <h3>$2000</h3>
-                    <i className="fa-solid fa-cart-plus"></i>
+                  <Button>Agregar al carrito
+                  <i className="fa-solid fa-cart-plus"></i>
+                  </Button>
+                   
                   </Card.Body>
                 </Card>
               </Col>
             ))}
           </Row>
-        </Container>
+        </Container> 
       </div>
     </>
   )
