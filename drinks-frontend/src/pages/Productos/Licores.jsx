@@ -1,4 +1,4 @@
-import { Container, Row, Col, Card, Button } from 'react-bootstrap'
+import { Container, Row, Col, Card, /* Button */ } from 'react-bootstrap'
 import { useEffect, useState } from 'react';
 import axios from 'axios'
 import styles from './index.module.css';
@@ -41,9 +41,9 @@ useEffect(()=>{
                       {`$ ${product.price}`}
                      
                     </Card.Text>
-                  <Button>Agregar al carrito
+              {/*     <Button>Agregar al carrito
                   <i className="fa-solid fa-cart-plus"></i>
-                  </Button>
+                  </Button> */}
                    
                   </Card.Body>
                 </Card>

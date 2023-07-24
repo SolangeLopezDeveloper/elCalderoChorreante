@@ -1,13 +1,18 @@
-import { Container, Row, Col, Card, Button } from 'react-bootstrap'
+import { Container, Row, Col, Card, /* Button */ } from 'react-bootstrap'
 import { useEffect, useState } from 'react';
 import axios from 'axios'
 import styles from './index.module.css';
+/* import useCart from '../../hooks/useCart'
+import { types } from '../../types'
+import Swal from "sweetalert2"; */
 
 const apiURL = import.meta.env.VITE_API_URL_PRODUCTS;
 
 export const Cervezas = () => {
 
   const [cervezas, setCervezas] = useState([]);
+
+  //const { dispatch } = useCart()
 
   useEffect(()=>{
     axios.get(`${apiURL}cervezas`)
@@ -20,7 +25,21 @@ export const Cervezas = () => {
     })
   
   },[])
-
+ console.log(cervezas);
+ /*  const handleAddCart = () => {
+    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: '¡Tu producto se agregó al carrito!',
+        showConfirmButton: false,
+        timer: 1500
+    })
+    dispatch({
+        type: types.addItemToCart,
+        payload: cervezas
+    })
+}
+ */
   return (
     <div className={styles.product}>
       <h1>Cervezas</h1>
@@ -37,9 +56,10 @@ export const Cervezas = () => {
                       {`$ ${product.price}`}
                      
                     </Card.Text>
-                  <Button>Agregar al carrito
+                  {/* <Button   onClick={handleAddCart} >Agregar al carrito
                   <i className="fa-solid fa-cart-plus"></i>
-                  </Button>
+                 
+                  </Button> */}
                    
                   </Card.Body>
                 </Card>
